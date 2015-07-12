@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Bt
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Bt
+ * @package     Bt_Mag
+ */
+-->
+<config>
+    <menu>
+		<cms>
+			<children>
+				<bt_mag translate="title" module="bt_mag">
+					<title>Magasines</title>
+					<sort_order>100</sort_order>
+					<children>
+						<article translate="title"  module="bt_mag">
+							<title>Articles</title>
+							<action>adminhtml/article/index</action>
+							<sort_order>10</sort_order>
+						</article>
+						<mag translate="title"  module="bt_mag">
+							<title>Mag</title>
+							<action>adminhtml/mag/index</action>
+							<sort_order>20</sort_order>
+						</mag>
+					</children>
+				</bt_mag>
+			</children>
+         </cms>
+    </menu>	
+    <acl>
+        <resources>
+            <admin>
+			    <children>
+				    <cms>
+						<children>
+							<bt_mag translate="title" module="bt_mag">
+								<title>Magasines</title>
+								<sort_order>100</sort_order>
+							</bt_mag>
+						</children>
+				    </cms>
+				</children>
+            </admin>
+        </resources>
+    </acl>
+</config>
