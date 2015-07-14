@@ -3,15 +3,12 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
 {
     protected function _prepareForm()
     {
-        $form = new Varien_Data_Form(array(
+        $form = new Varien_Data_Form([
             'id' => 'edit_form',
-            'action' => $this->getUrl(
-                'bt_mag_adminhtml/article/edit',
-                ['_current' => true,
-                 'continue' => 0]
-            ),
+            'action' => $this->getUrl('adminhtml/article/edit', ['_current' => true, 'continue' => 0]),
             'method' => 'post',
-        ));
+            'enctype' => 'multipart/form-data'
+        ]);
         $form->setUseContainer(true);
         $this->setForm($form);
         $fieldset = $form->addFieldset('general', ['legend' => $this->__('Article Details')]);
@@ -20,56 +17,58 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
         // Add the fields that we want to be editable.
         $this->_addFieldsToFieldset($fieldset, array(
             'article_id' => [
-                'label' => $this->__('Id'),
+                'label' => $this->__('Id bloc'),
                 'input' => 'text',
-                'required' => true,
+                'required' => false,
+                  'readonly' => true
             ],
             'title' => [
-                'label' => $this->__('Title'),
+                'label' => $this->__('Titre bloc'),
                 'input' => 'text',
-                'required' => true,
+                'required' => true
             ],
             'size' => [
-                'label' => $this->__('Size'),
+                'label' => $this->__('Taille'),
                 'input' => 'select',
                 'required' => true,
-                'options' => $articleSingleton->getSizes(),
+                'options' => $articleSingleton->getSizes()
             ],
             'category' => [
-                'label' => $this->__('Category'),
+                'label' => $this->__('Categorie'),
                 'input' => 'select',
                 'required' => true,
-                'options' => $articleSingleton->getCategories(),
-            ],
-            'img_path' => [
-                'label' => $this->__('Img path'),
-                'input' => 'text',
-                'required' => true,
+                'options' => $articleSingleton->getCategories()
             ],
             'background_color' => [
-                'label' => $this->__('Background color'),
-                'input' => 'text',
-                'required' => true,
+                'label' => $this->__('Couleur de fond'),
+                'input' => 'radios',
+                'required' => false,
+                'values' => $articleSingleton->getBackgroundColors()
+            ],
+            'img_path' => [
+                'label' => $this->__('Visuel'),
+                'input' => 'image',
+                'required' => true   
             ],
             'rubric' => [
                 'label' => $this->__('Rubrique'),
                 'input' => 'text',
-                'required' => true,
+                'required' => false
             ],
             'title_1' => [
                 'label' => $this->__('Titre Ligne 1'),
                 'input' => 'text',
-                'required' => true,
+                'required' => true
             ],
             'title_2' => [
                 'label' => $this->__('Titre Ligne 2'),
                 'input' => 'text',
-                'required' => true,
+                'required' => false
             ],
             'content' => [
-                'label' => $this->__('Content'),
+                'label' => $this->__('Contenu Article'),
                 'input' => 'textarea',
-                'required' => true,
+                'required' => true
             ]
         ));
 

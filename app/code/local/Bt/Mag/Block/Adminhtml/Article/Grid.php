@@ -25,7 +25,7 @@ class Bt_Mag_Block_Adminhtml_Article_Grid extends Mage_Adminhtml_Block_Widget_Gr
             'index' => 'article_id',
         ])
             ->addColumn('category', [
-            'header' => $this->_getHelper()->__('Category'),
+            'header' => $this->_getHelper()->__('Categorie'),
             'type' => 'options',
             'index' => 'category',
             'options' => $articleSingleton->getCategories()
@@ -36,30 +36,16 @@ class Bt_Mag_Block_Adminhtml_Article_Grid extends Mage_Adminhtml_Block_Widget_Gr
             'index' => 'title',
         ])
             ->addColumn('size', [
-            'header' => $this->_getHelper()->__('Taille'),
+            'header' => $this->_getHelper()->__('Largeur'),
             'type' => 'options',
             'index' => 'size',
             'options' => $articleSingleton->getSizes()
         ])
             ->addColumn('update_time', [
-            'header' => $this->_getHelper()->__('Updated'),
+            'header' => $this->_getHelper()->__('Date mise à jour'),
             'type' => 'datetime',
             'index' => 'update_time',
-        ])
-            ->addColumn('action', [
-            'header' => $this->_getHelper()->__('Action'),
-            'width' => '50px',
-            'type' => 'action',
-            'actions' => [
-                [
-                    'caption' => $this->_getHelper()->__('Edit'),
-                    'url' => ['base' => 'adminhtml/article/edit'],
-                    'field' => 'id'
-                ],
-            ],
-            'filter' => false,
-            'sortable' => false,
-            'index' => 'article_id',
+            'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT)
         ]);
 
         return parent::_prepareColumns();
