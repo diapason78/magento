@@ -24,13 +24,24 @@ class Bt_Mag_Model_Article extends Mage_Core_Model_Abstract
         ];
     }
     
-    public function getBackgroundColors()
+    public function getBackgroundColors($id)
     {
+		$value = null;
+		$bgcolor = $this
+		    ->load($id)
+            ->getData('background_color');
+        if (!is_null($bgcolor) && !in_array($bgcolor, ['#FFFFFF', '#D8D8D8', '#F3E2A9'])) {
+
+			$value = 'value="' . $bgcolor . '"';
+		} else {
+			$bgcolor = 'autre';
+		}
+		
 		return [
 			['value'=>'#FFFFFF','label'=>'<div title="blanc - #FFFFFF" style="background-color: #FFFFFF; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
 			['value'=>'#D8D8D8','label'=>'<div title="gris clair - #D8D8D8" style="background-color: #D8D8D8; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
 			['value'=>'#F3E2A9','label'=>'<div title="taupe - #F3E2A9" style="background-color: #F3E2A9; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
-			['value'=>'autre','label'=>'<input placeholder="Autre #Hexa" name="articleData[background_color][autre]" />']
+			['value'=>$bgcolor,'label'=>'<input ' . $value . ' placeholder="Autre #Hexa" name="articleData[background_color_autre]" />']
 		];
 	}
 	
@@ -90,8 +101,11 @@ class Bt_Mag_Model_Article extends Mage_Core_Model_Abstract
 
     protected function _changeBackgroundColor()
     {
+        $bgColor = Mage::app()->getRequest()->getParam('articleData')['background_color_autre'];
+        if (Mage::app()->getRequest()->getParam('articleData')['background_color'] === 'autre') {
+            $this->setBackgroundColor($bgColor);
+        }
 
-        
         return $this;
     }
 }
