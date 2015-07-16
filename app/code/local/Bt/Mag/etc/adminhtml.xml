@@ -62,4 +62,11 @@
             </admin>
         </resources>
     </acl>
+	  <layout>
+		<updates>
+		  <bt_mag>
+			<file>bt_mag.xml</file>
+		  </bt_mag>
+		</updates>
+	  </layout>
 </config>

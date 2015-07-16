@@ -3,17 +3,21 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
 {
     protected function _prepareForm()
     {
-        $form = new Varien_Data_Form([
+		if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+			$this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+		}
+		$form = new Varien_Data_Form([
             'id' => 'edit_form',
             'action' => $this->getUrl('adminhtml/article/edit', ['_current' => true, 'continue' => 0]),
             'method' => 'post',
             'enctype' => 'multipart/form-data'
         ]);
+
         $form->setUseContainer(true);
         $this->setForm($form);
         $fieldset = $form->addFieldset('general', ['legend' => $this->__('Article Details')]);
         $articleSingleton = Mage::getSingleton('bt_mag/article');
-
+		$id = (int)$this->getRequest()->getParam('id');
         // Add the fields that we want to be editable.
         $this->_addFieldsToFieldset($fieldset, array(
             'article_id' => [
@@ -43,7 +47,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
                 'label' => $this->__('Couleur de fond'),
                 'input' => 'radios',
                 'required' => false,
-                'values' => $articleSingleton->getBackgroundColors()
+                'values' => $articleSingleton->getBackgroundColors($id)
             ],
             'img_path' => [
                 'label' => $this->__('Visuel'),
@@ -67,8 +71,12 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
             ],
             'content' => [
                 'label' => $this->__('Contenu Article'),
-                'input' => 'textarea',
-                'required' => true
+                'input' => 'editor',
+                'required' => true,
+                'style'     => 'height: 600px;',
+                'wysiwyg'   => true,
+                'required'  => false,
+                'config'    => Mage::getSingleton('cms/wysiwyg_config')
             ]
         ));
 
