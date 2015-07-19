@@ -16,6 +16,7 @@ class Bt_Mag_ArticleController extends Mage_Adminhtml_Controller_Action
 
     public function editAction()
     {
+
         $session = Mage::getSingleton('adminhtml/session');
         $postData = $this->getRequest()->getPost('articleData');
         $article = Mage::getModel('bt_mag/article');
@@ -45,7 +46,12 @@ class Bt_Mag_ArticleController extends Mage_Adminhtml_Controller_Action
         $articleEditBlock = $this->getLayout()->createBlock('bt_mag/article_edit');
         $this
 			->loadLayout()
-            ->_addContent($articleEditBlock)
+            ->_addContent($articleEditBlock);
+        $this
+            ->getLayout()
+            ->getBlock('head')
+            ->setCanLoadTinyMce(true);
+        $this
             ->renderLayout();
     }
 

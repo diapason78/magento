@@ -38,7 +38,7 @@ class Bt_Mag_Model_Article extends Mage_Core_Model_Abstract
 		}
 		
 		return [
-			['value'=>'#FFFFFF','label'=>'<div title="blanc - #FFFFFF" style="background-color: #FFFFFF; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
+			['class' => 'validate-one-required-by-name', 'value'=>'#FFFFFF','label'=>'<div title="blanc - #FFFFFF" style="background-color: #FFFFFF; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
 			['value'=>'#D8D8D8','label'=>'<div title="gris clair - #D8D8D8" style="background-color: #D8D8D8; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
 			['value'=>'#F3E2A9','label'=>'<div title="taupe - #F3E2A9" style="background-color: #F3E2A9; border: solid 1px #000000; display: inline-block; padding: 10px; margin: -7px 10px -7px 5px;"></div>'],
 			['value'=>$bgcolor,'label'=>'<input ' . $value . ' placeholder="Autre #Hexa" name="articleData[background_color_autre]" />']

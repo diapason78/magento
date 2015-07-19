@@ -6,7 +6,6 @@ class Bt_Mag_Helper_Data extends Mage_Core_Helper_Abstract
 		$fileName = '';
 		if (!empty($_FILES['articleData']['name']['img_path'])) {
 			try {
-                $pathInfo = pathinfo($_FILES['articleData']);
 				$file = [
 					'name'     => $_FILES['articleData']['name']['img_path'],
 					'type'     => $_FILES['articleData']['type']['img_path'],

@@ -17,6 +17,15 @@
 					<article>
 						<table>bt_mag_article</table>
 					</article>
+					<mag>
+						<table>bt_mag_mag</table>
+					</mag>
+					<mag_article>
+						<table>bt_mag_mag_article</table>
+					</mag_article>
+					<status>
+						<table>bt_mag_status</table>
+					</status>
 				</entities>
 			</bt_mag_resource>
 		</models>

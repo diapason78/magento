@@ -1,11 +1,9 @@
 <?php
 class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
+    
     protected function _prepareForm()
     {
-		if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
-			$this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
-		}
 		$form = new Varien_Data_Form([
             'id' => 'edit_form',
             'action' => $this->getUrl('adminhtml/article/edit', ['_current' => true, 'continue' => 0]),
@@ -24,7 +22,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
                 'label' => $this->__('Id bloc'),
                 'input' => 'text',
                 'required' => false,
-                  'readonly' => true
+                 'readonly' => true
             ],
             'title' => [
                 'label' => $this->__('Titre bloc'),
@@ -46,7 +44,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
             'background_color' => [
                 'label' => $this->__('Couleur de fond'),
                 'input' => 'radios',
-                'required' => false,
+                'required' => true,
                 'values' => $articleSingleton->getBackgroundColors($id)
             ],
             'img_path' => [
@@ -75,7 +73,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
                 'required' => true,
                 'style'     => 'height: 600px;',
                 'wysiwyg'   => true,
-                'required'  => false,
+                'required'  => true,
                 'config'    => Mage::getSingleton('cms/wysiwyg_config')
             ]
         ));
@@ -122,9 +120,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
             // Just in case the controller does not register the brand.
             if (!$article instanceof
                     Bt_Mag_Model_Article) {
-                $article = Mage::getModel(
-                    'bt_mag/article'
-                );
+                $article = Mage::getModel('bt_mag/article');
             }
 
             $this->setData('article', $article);

@@ -98,6 +98,7 @@ media/import/
 media/xmlconnect/
 media/catalog/product/cache/
 media/catalog/product/placeholder/default/
+media/img/
 /api.php
 nbproject/
 pear
