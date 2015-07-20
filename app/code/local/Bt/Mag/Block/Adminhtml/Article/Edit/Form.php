@@ -22,7 +22,7 @@ class Bt_Mag_Block_Adminhtml_Article_Edit_Form extends Mage_Adminhtml_Block_Widg
                 'label' => $this->__('Id bloc'),
                 'input' => 'text',
                 'required' => false,
-                 'readonly' => true
+                'readonly' => true
             ],
             'title' => [
                 'label' => $this->__('Titre bloc'),

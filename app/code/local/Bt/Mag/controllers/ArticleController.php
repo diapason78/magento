@@ -47,12 +47,20 @@ class Bt_Mag_ArticleController extends Mage_Adminhtml_Controller_Action
         $this
 			->loadLayout()
             ->_addContent($articleEditBlock);
-        $this
+        $headBlock = $this
             ->getLayout()
-            ->getBlock('head')
-            ->setCanLoadTinyMce(true);
+            ->getBlock('head');
+        $headBlock
+			->setCanLoadTinyMce(true)
+			->addCss('mag/article.css')
+			->addJs('adminhtml/mag/article.js');
         $this
             ->renderLayout();
+            
+            
+
+            
+            
     }
 
     public function deleteAction()
